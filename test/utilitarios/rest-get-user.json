@@ -1,0 +1,11 @@
+{
+    "firstName": "Ram",
+    "lastName": "Sharma",
+    "age": 26,
+    "phoneNumbers": [
+        {
+            "type": "home",
+            "phone-number": "212 888-2365"
+        }
+    ] 
+}
