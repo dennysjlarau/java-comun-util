@@ -7,5 +7,15 @@
             "type": "home",
             "phone-number": "212 888-2365"
         }
+    ],
+    "headers": [
+        {
+            "nombre": "host",
+            "valor": "localhost:8080"
+        },
+        {
+            "nombre": "etiqueta-prueba",
+            "valor": "valor prueba"
+        }
     ] 
 }

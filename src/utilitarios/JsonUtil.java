@@ -5,13 +5,18 @@ package utilitarios;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.google.gson.Gson;
+
 import excepciones.ArchivoIncorrectoException;
+import pojos.ObjetoComun;
 
 /**
  * @author dennys
@@ -51,5 +56,21 @@ public final class JsonUtil {
 		}
 	}
 	
+	public static List<ObjetoComun> obtenerListaObjetoComun(JSONObject jsonObjeto, String etiqueta) {
+		Gson g = new Gson();
+		List<ObjetoComun> objLista = new ArrayList<>();
+
+		JSONArray jsonArray = (JSONArray) jsonObjeto.get(etiqueta);
+		if (jsonArray == null || jsonArray.isEmpty()) {
+			LoggerUtil.getLogger(JsonUtil.class.getName()).error("No existe etiqueta: " + etiqueta);
+			throw new ArchivoIncorrectoException("Error en la etiqueta");
+		} else {
+			for (int i = 0; i < jsonArray.size(); i++) {
+				objLista.add(g.fromJson(jsonArray.get(i).toString(), ObjetoComun.class));
+			}
+		}
+
+		return objLista;
+	}
 	
 }
